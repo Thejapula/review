@@ -1,0 +1,180 @@
+/* ==========================================================================
+   PeerLearn - Responsive Layout & Breakpoints
+   Supports Mobile, Tablet, Laptop & Desktop screens
+   ========================================================================== */
+
+/* Tablet & Smaller (< 1024px) */
+@media (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .page-container {
+    padding: 1.5rem;
+  }
+
+  .global-search-wrapper {
+    width: 240px;
+  }
+}
+
+/* Mobile & Tablet Portrait (< 768px) */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .app-sidebar {
+    transform: translateX(-100%);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .app-sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  /* Backdrop for mobile drawer */
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 95;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .sidebar-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .app-main {
+    margin-left: 0;
+  }
+
+  .menu-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-topbar {
+    padding: 0 1rem;
+  }
+
+  .global-search-wrapper {
+    display: none; /* Can be opened via mobile modal or top search button */
+  }
+
+  .quick-role-picker {
+    display: none; /* Moved to sidebar on mobile */
+  }
+
+  .page-container {
+    padding: 1rem;
+  }
+
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-header .btn {
+    width: 100%;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pills-group {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .modal-dialog {
+    max-height: 95vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-header {
+    padding: 1.25rem;
+  }
+
+  .modal-body {
+    padding: 1.25rem;
+  }
+
+  .modal-footer {
+    padding: 1rem 1.25rem;
+    flex-direction: column;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .toast-item {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .rubric-options {
+    flex-wrap: wrap;
+  }
+
+  .rubric-option-btn {
+    min-width: calc(50% - 0.25rem);
+  }
+
+  .comment-card.nested {
+    margin-left: 1rem;
+  }
+}
+
+/* Small Phones (< 480px) */
+@media (max-width: 480px) {
+  h1 { font-size: 1.65rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.15rem; }
+
+  .stat-card-3d {
+    padding: 1.15rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .course-cover {
+    height: 140px;
+  }
+
+  .user-mini-card {
+    display: none;
+  }
+}

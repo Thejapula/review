@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" height="360">
+  <defs>
+    <linearGradient id="courseBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="360" fill="url(#courseBg)" />
+  <circle cx="500" cy="80" r="140" fill="#ffffff" opacity="0.08" />
+  <circle cx="100" cy="280" r="100" fill="#ffffff" opacity="0.05" />
+  <g transform="translate(250, 130)" stroke="#ffffff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="-40" y="-30" width="80" height="60" rx="8" />
+    <polygon points="-10,-10 15,0 -10,10" fill="#ffffff" />
+  </g>
+  <text x="300" y="230" fill="#ffffff" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="middle" letter-spacing="1">
+    PeerLearn Curriculum
+  </text>
+</svg>

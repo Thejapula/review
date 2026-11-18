@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="gradLogo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#2563eb" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="10" y="10" width="80" height="80" rx="22" fill="url(#gradLogo)" filter="url(#shadow)" />
+  <path d="M36 30 H54 C63 30 68 35 68 43 C68 51 63 56 54 56 H46 V72 H36 V30 Z M46 38 V48 H53 C57 48 60 46 60 43 C60 40 57 38 53 38 H46 Z" fill="#ffffff" />
+</svg>
