@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignments - PeerLearn</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <main class="app-main">
+      <!-- Topbar -->
+      <div id="topbar-container"></div>
+
+      <!-- Main Content -->
+      <div class="page-container">
+        <div class="page-header">
+          <div class="page-title-group">
+            <h1>Course Assignments & Peer Submissions</h1>
+            <p class="page-subtitle">Submit your course deliverables, track rubric evaluations, and review peer feedback.</p>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+            <select id="filterAssignmentStatus" class="form-control" style="width: 200px;">
+              <option value="all">All Statuses</option>
+              <option value="not_submitted">Not Submitted</option>
+              <option value="under_review">Under Peer Review</option>
+              <option value="reviewed">Reviewed & Graded</option>
+            </select>
+
+            <input type="text" id="searchAssignments" class="form-control" placeholder="Search assignment title or course..." style="width: 280px;">
+          </div>
+        </div>
+
+        <!-- Assignments List -->
+        <div id="assignmentsListContainer">
+          <!-- Rendered by assignments.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="assignmentsEmptyState" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          </div>
+          <h3 class="empty-state-title">No Assignments Found</h3>
+          <p class="empty-state-desc">Try clearing the status filter or search query.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/assignments.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initAssignmentsPage();
+    });
+  </script>
+</body>
+</html>

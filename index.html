@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PeerLearn - Online Learning Peer Review System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    /* Landing Page Specific Hero & Visuals */
+    .landing-nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-600);
+    }
+
+    .hero-section {
+      padding: 5rem 3rem 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(147, 51, 234, 0.1));
+      border: 1px solid rgba(147, 197, 253, 0.5);
+      padding: 0.35rem 0.95rem;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary-700);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #0f172a 30%, #2563eb 80%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* 3D Floating Showcase Stack */
+    .hero-3d-stack {
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .floating-card {
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 
+        0 20px 40px -10px rgba(37, 99, 235, 0.16),
+        0 12px 20px -8px rgba(124, 58, 237, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      padding: 1.75rem;
+      transition: transform 0.4s ease;
+    }
+
+    .floating-card:hover {
+      transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+    }
+
+    .floating-badge-1 {
+      position: absolute;
+      top: -20px;
+      right: -15px;
+      background: #ffffff;
+      padding: 0.65rem 1.15rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      animation: floatSlow 4s ease-in-out infinite alternate;
+    }
+
+    .floating-badge-2 {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      animation: floatSlow 4.5s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes floatSlow {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* Steps Section */
+    .section-container {
+      padding: 5rem 3rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .step-card-3d {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-3d);
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .step-card-3d:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-3d-hover);
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--purple-600) 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+    }
+
+    /* Footer */
+    .landing-footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 4rem 3rem 2rem;
+      border-top: 1px solid #1e293b;
+    }
+
+    .footer-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .landing-nav { padding: 0 1.5rem; }
+      .hero-section { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+      .hero-title { font-size: 2.5rem; }
+      .section-container { padding: 3.5rem 1.5rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Landing Top Navigation -->
+  <nav class="landing-nav">
+    <a href="index.html" class="brand-logo">
+      <div class="logo-badge">P</div>
+      <div>
+        <span>PeerLearn</span>
+        <div style="font-size: 0.65rem; color: var(--text-muted); font-weight: 500; margin-top: -2px;">Online Peer Review</div>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="#howItWorks">How It Works</a></li>
+      <li><a href="#features">Features</a></li>
+    </ul>
+
+    <div style="display: flex; align-items: center; gap: 0.75rem;" id="landingAuthActions">
+      <a href="login.html" class="btn btn-secondary btn-sm">Log In</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div>
+      <div class="hero-badge">
+        <span>✨</span> Next-Gen Collaborative Learning & Evaluation
+      </div>
+
+      <h1 class="hero-title">Learn. Review.<br>Improve.</h1>
+
+      <p class="hero-subtitle">
+        A collaborative peer review platform that helps students learn through meaningful feedback, structured rubrics, and real-time interactive evaluations.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="register.html" class="btn btn-primary btn-lg">Get Started Free →</a>
+        <a href="courses.html" class="btn btn-secondary btn-lg">Explore Courses</a>
+      </div>
+
+      <!-- Quick Demo Access Banner -->
+      <div style="margin-top: 2rem; display: flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; color: var(--text-muted);">
+        <span>Quick Demo Accounts:</span>
+        <a href="login.html?demo=student" class="role-badge role-student">Student</a>
+        <a href="login.html?demo=reviewer" class="role-badge role-reviewer">Reviewer</a>
+        <a href="login.html?demo=admin" class="role-badge role-admin">Admin</a>
+      </div>
+    </div>
+
+    <!-- 3D Interactive Floating Showcase -->
+    <div class="hero-3d-stack">
+      <div class="floating-badge-1">
+        <span style="color: #f59e0b; font-size: 1.1rem;">★ 4.9</span>
+        <span>Peer Rating Received</span>
+      </div>
+
+      <div class="floating-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Reviewer" style="width: 40px; height: 40px; border-radius: 50%;">
+            <div>
+              <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-main);">Dr. Sarah Chen</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Senior Technical Reviewer</div>
+            </div>
+          </div>
+          <span class="status-badge status-reviewed">Reviewed</span>
+        </div>
+
+        <h4 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem;">
+          Responsive 3D Education SaaS Platform
+        </h4>
+        <p style="font-size: 0.85rem; color: var(--text-body); line-height: 1.5; margin-bottom: 1rem;">
+          "Terrific layout with soft 3D elevation shadows! The localStorage persistence handles multi-user states flawlessly."
+        </p>
+
+        <div style="background: #f8fafc; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.35rem;">
+            <span>Rubric: Content Quality</span>
+            <span style="color: var(--primary-600);">5.0 / 5.0</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" style="width: 100%;"></div></div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--text-muted);">
+          <span>Due: Dec 15, 2026</span>
+          <span style="font-weight: 700; color: #15803d;">Score: 98 / 100 pts</span>
+        </div>
+      </div>
+
+      <div class="floating-badge-2">
+        <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+        <span><strong>156 Learners</strong> Enrolled in Web Dev</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- How It Works Section -->
+  <section class="section-container" id="howItWorks">
+    <div class="section-header">
+      <span class="role-badge role-student" style="margin-bottom: 0.5rem;">Workflow</span>
+      <h2>How Peer Evaluation Works</h2>
+      <p style="color: var(--text-muted); font-size: 1rem; margin-top: 0.5rem;">
+        An automated, transparent four-step cycle that turns assignment reviews into deep learning experiences.
+      </p>
+    </div>
+
+    <div class="grid-4">
+      <div class="step-card-3d">
+        <div class="step-number">1</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Enroll & Complete</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Access rich video lessons, documents, notes, and track your progress in real-time.
+        </p>
+      </div>
+
+      <div class="step-card-3d">
+        <div class="step-number">2</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Submit Project</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Provide your project link, repo, and notes. The system auto-assigns an eligible peer reviewer.
+        </p>
+      </div>
+
+      <div class="step-card-3d">
+        <div class="step-number">3</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Rubric Evaluation</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Peers assess Content Quality, Clarity, Creativity, and Completeness with 1-5 star ratings.
+        </p>
+      </div>
+
+      <div class="step-card-3d">
+        <div class="step-number">4</div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Iterate & Excel</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Receive actionable strengths and improvements. Reply to comments and watch your scores climb!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features Section -->
+  <section class="section-container" id="features" style="background: rgba(255, 255, 255, 0.6); border-radius: var(--radius-xl); border: 1px solid var(--border-subtle);">
+    <div class="section-header">
+      <span class="role-badge role-reviewer" style="margin-bottom: 0.5rem;">Platform Highlights</span>
+      <h2>Engineered for Academic Excellence</h2>
+      <p style="color: var(--text-muted); font-size: 1rem; margin-top: 0.5rem;">
+        Everything you need to manage courses, peer evaluations, and student progress in one clean interface.
+      </p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card-3d">
+        <div class="stat-icon-wrapper stat-icon-blue" style="margin-bottom: 1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+        </div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Multi-Criteria Rubrics</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Rate quality, documentation, aesthetic creativity, and completeness with weighted scoring.
+        </p>
+      </div>
+
+      <div class="card-3d">
+        <div class="stat-icon-wrapper stat-icon-purple" style="margin-bottom: 1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path></svg>
+        </div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Real-Time Notification Hub</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Instant alerts for new review assignments, feedback completion, grades, and comments.
+        </p>
+      </div>
+
+      <div class="card-3d">
+        <div class="stat-icon-wrapper stat-icon-emerald" style="margin-bottom: 1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </div>
+        <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem;">Administrative Governance</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          Full CRUD control over users, courses, syllabus lessons, and moderation of feedback comments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section-container" style="text-align: center;">
+    <div style="background: linear-gradient(135deg, var(--primary-600) 0%, var(--purple-700) 100%); border-radius: var(--radius-xl); padding: 4rem 2rem; color: #fff; box-shadow: var(--shadow-lg);">
+      <h2 style="font-size: 2.4rem; color: #fff; margin-bottom: 1rem;">Ready to Transform Your Learning?</h2>
+      <p style="font-size: 1.1rem; color: #e0e7ff; max-width: 600px; margin: 0 auto 2rem;">
+        Join students and instructors collaborating on high-impact projects through peer reviews.
+      </p>
+      <a href="register.html" class="btn btn-secondary btn-lg" style="color: var(--primary-700); font-weight: 700;">
+        Create Your Free Account Now
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="brand-logo" style="color: #fff; margin-bottom: 0.75rem;">
+          <div class="logo-badge">P</div>
+          <span>PeerLearn</span>
+        </div>
+        <p style="font-size: 0.88rem; line-height: 1.6; max-width: 320px;">
+          Online Learning Peer Review System. Empowering students and mentors through transparent, rubric-based feedback.
+        </p>
+      </div>
+
+      <div>
+        <h4 style="color: #fff; font-size: 0.95rem; margin-bottom: 1rem;">Platform</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+          <li><a href="courses.html" style="color: #94a3b8;">Browse Courses</a></li>
+          <li><a href="assignments.html" style="color: #94a3b8;">Assignments</a></li>
+          <li><a href="reviews.html" style="color: #94a3b8;">Peer Reviews</a></li>
+          <li><a href="progress.html" style="color: #94a3b8;">Progress Tracking</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="color: #fff; font-size: 0.95rem; margin-bottom: 1rem;">Demo Access</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
+          <li><a href="login.html?demo=student" style="color: #94a3b8;">Student: student@example.com</a></li>
+          <li><a href="login.html?demo=reviewer" style="color: #94a3b8;">Reviewer: reviewer@example.com</a></li>
+          <li><a href="login.html?demo=admin" style="color: #94a3b8;">Admin: admin@example.com</a></li>
+          <li><span style="color: #64748b;">Password: student123 / reviewer123</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 style="color: #fff; font-size: 0.95rem; margin-bottom: 1rem;">College Project</h4>
+        <p style="font-size: 0.85rem; line-height: 1.6;">
+          PeerLearn • Modern Educational SaaS Project • HTML5, CSS3, Vanilla JavaScript. LocalStorage Persistence.
+        </p>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 0.8rem; padding-top: 1.5rem; border-top: 1px solid #1e293b;">
+      © 2026 PeerLearn. All rights reserved. Built for College Project & Demonstration.
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Update navbar if user already logged in
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = getCurrentUser();
+      const actions = document.getElementById('landingAuthActions');
+      if (user && actions) {
+        actions.innerHTML = `
+          <a href="${user.role === 'admin' ? 'admin.html' : 'dashboard.html'}" class="btn btn-primary btn-sm">
+            Go to Dashboard (${user.name}) →
+          </a>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

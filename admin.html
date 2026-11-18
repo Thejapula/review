@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - PeerLearn</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <main class="app-main">
+      <!-- Topbar -->
+      <div id="topbar-container"></div>
+
+      <!-- Main Admin Management Container -->
+      <div class="page-container" id="adminPageContent">
+        <!-- Rendered by admin.js -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Global Admin Management Modal Dialog -->
+  <div class="modal-backdrop" id="adminModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="adminModalTitle">Admin Action</h3>
+        <button class="modal-close-btn" onclick="closeModal('adminModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="adminModalBody">
+        <!-- Dynamic Form Fields -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initAdminPage();
+    });
+  </script>
+</body>
+</html>

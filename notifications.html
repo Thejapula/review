@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications - PeerLearn</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <main class="app-main">
+      <!-- Topbar -->
+      <div id="topbar-container"></div>
+
+      <!-- Main Notifications Center Container -->
+      <div class="page-container">
+        <div class="page-header">
+          <div class="page-title-group">
+            <h1>Notification Center</h1>
+            <p class="page-subtitle">Stay informed about assigned peer evaluations, grades received, deadlines, and discussion updates.</p>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="btn btn-secondary btn-sm" onclick="markAllNotificationsAsRead()">✓ Mark All Read</button>
+            <button class="btn btn-outline btn-sm" onclick="clearAllNotifications()">Clear All</button>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-subtle); padding-bottom: 0.25rem;">
+          <button class="filter-pill notif-filter-btn active" data-filter="all">All Notifications</button>
+          <button class="filter-pill notif-filter-btn" data-filter="unread">Unread Only</button>
+        </div>
+
+        <!-- Notifications List -->
+        <div id="notificationsContainer">
+          <!-- Rendered by notifications.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="notificationsEmptyState" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path></svg>
+          </div>
+          <h3 class="empty-state-title">No Notifications</h3>
+          <p class="empty-state-desc">You are all caught up! New peer review alerts and comments will appear here.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/notifications.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initNotificationsPage();
+    });
+  </script>
+</body>
+</html>

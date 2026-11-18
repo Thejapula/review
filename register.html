@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - PeerLearn</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+      background: radial-gradient(circle at top left, #eff6ff 0%, #f8fafc 40%, #faf5ff 100%);
+    }
+
+    .auth-card {
+      max-width: 500px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 
+        0 20px 40px -10px rgba(37, 99, 235, 0.15),
+        0 10px 20px -5px rgba(124, 58, 237, 0.1);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-600), var(--purple-600));
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+  </style>
+</head>
+<body class="auth-page">
+
+  <div class="auth-card">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <a href="index.html" class="brand-logo" style="justify-content: center; margin-bottom: 0.75rem;">
+        <div class="logo-badge">P</div>
+        <span>PeerLearn</span>
+      </a>
+      <h2 style="font-size: 1.6rem; color: var(--text-main);">Create Your Account</h2>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.25rem;">
+        Join the collaborative peer evaluation and learning community
+      </p>
+    </div>
+
+    <div id="regError" class="form-error" style="display: none; margin-bottom: 1rem; background: #fee2e2; padding: 0.65rem 0.85rem; border-radius: var(--radius-md);"></div>
+
+    <form id="registerForm">
+      <div class="form-group">
+        <label class="form-label" for="regName">Full Name *</label>
+        <input type="text" id="regName" class="form-control" placeholder="e.g., Jordan Hayes" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regEmail">Academic / Professional Email *</label>
+        <input type="email" id="regEmail" class="form-control" placeholder="jordan@university.edu" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regRole">Primary Platform Role *</label>
+        <select id="regRole" class="form-control" required>
+          <option value="student" selected>Student (Submit work & review peers)</option>
+          <option value="reviewer">Reviewer (Expert evaluation & feedback)</option>
+          <option value="admin">Administrator (Platform management)</option>
+        </select>
+        <div class="form-hint">You can also freely test all 3 roles using the top-bar demo switch.</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label" for="regPassword">Password *</label>
+          <input type="password" id="regPassword" class="form-control" placeholder="••••••••" minlength="6" required>
+          <div class="form-hint">At least 6 characters.</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regConfirmPassword">Confirm Password *</label>
+          <input type="password" id="regConfirmPassword" class="form-control" placeholder="••••••••" minlength="6" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem; margin-bottom: 1.25rem;">
+        Complete Registration
+      </button>
+
+      <div style="text-align: center; font-size: 0.88rem; color: var(--text-muted);">
+        Already registered? <a href="login.html" style="font-weight: 700;">Sign in here</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initRegisterForm();
+    });
+  </script>
+</body>
+</html>

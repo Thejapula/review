@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peer Reviews - PeerLearn</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <main class="app-main">
+      <!-- Topbar -->
+      <div id="topbar-container"></div>
+
+      <!-- Main Page Container -->
+      <div class="page-container">
+        <div class="page-header">
+          <div class="page-title-group">
+            <h1>Peer Review Evaluation Center</h1>
+            <p class="page-subtitle">Evaluate assigned peer submissions, review your completed evaluations, and read peer feedback.</p>
+          </div>
+        </div>
+
+        <!-- Review Management Tabs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.75rem; border-bottom: 2px solid var(--border-subtle); padding-bottom: 0.25rem; overflow-x: auto;">
+          <button class="filter-pill review-tab-btn active" data-tab="pending">
+            Pending Evaluations (Assigned to You)
+          </button>
+          <button class="filter-pill review-tab-btn" data-tab="completed">
+            Your Completed Reviews
+          </button>
+          <button class="filter-pill review-tab-btn" data-tab="received">
+            Feedback Received on Your Work
+          </button>
+        </div>
+
+        <!-- Reviews List Container -->
+        <div id="reviewsListContainer">
+          <!-- Rendered by reviews.js -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="reviewsEmptyState" class="empty-state" style="display: none;">
+          <div class="empty-state-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <h3 class="empty-state-title">No Reviews Found</h3>
+          <p class="empty-state-desc">There are no peer reviews matching the current tab.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/reviews.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initReviewsPage();
+    });
+  </script>
+</body>
+</html>

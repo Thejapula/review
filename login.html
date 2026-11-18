@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - PeerLearn</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      background: radial-gradient(circle at top left, #eff6ff 0%, #f8fafc 40%, #faf5ff 100%);
+    }
+
+    .auth-card {
+      max-width: 460px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 
+        0 20px 40px -10px rgba(37, 99, 235, 0.15),
+        0 10px 20px -5px rgba(124, 58, 237, 0.1);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-600), var(--purple-600));
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .demo-accounts-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .demo-pill-btn {
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: #ffffff;
+      transition: var(--transition-smooth);
+    }
+
+    .demo-pill-btn:hover {
+      background: var(--primary-50);
+      border-color: var(--primary-300);
+      color: var(--primary-600);
+    }
+  </style>
+</head>
+<body class="auth-page">
+
+  <div class="auth-card">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <a href="index.html" class="brand-logo" style="justify-content: center; margin-bottom: 0.75rem;">
+        <div class="logo-badge">P</div>
+        <span>PeerLearn</span>
+      </a>
+      <h2 style="font-size: 1.6rem; color: var(--text-main);">Welcome Back</h2>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.25rem;">
+        Sign in to your account to review submissions & track courses
+      </p>
+    </div>
+
+    <!-- Quick 1-Click Demo Logins -->
+    <div class="demo-accounts-box">
+      <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+        <span>Quick Demo Credentials</span>
+        <span style="color: var(--primary-600);">One-Click Fill</span>
+      </div>
+      <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+        <button type="button" class="demo-pill-btn role-student" onclick="fillDemoLogin('student')">Student (Alex)</button>
+        <button type="button" class="demo-pill-btn role-reviewer" onclick="fillDemoLogin('reviewer')">Reviewer (Dr. Sarah)</button>
+        <button type="button" class="demo-pill-btn role-admin" onclick="fillDemoLogin('admin')">Admin (David)</button>
+      </div>
+    </div>
+
+    <div id="loginError" class="form-error" style="display: none; margin-bottom: 1rem; background: #fee2e2; padding: 0.65rem 0.85rem; border-radius: var(--radius-md);"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label class="form-label" for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" value="student@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+          <label class="form-label" for="loginPassword" style="margin-bottom: 0;">Password</label>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">Demo: student123</span>
+        </div>
+        <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" value="student123" required>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-size: 0.85rem;">
+        <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer; color: var(--text-body);">
+          <input type="checkbox" id="rememberMe" checked> Remember me
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 1.25rem;">
+        Sign In to PeerLearn
+      </button>
+
+      <div style="text-align: center; font-size: 0.88rem; color: var(--text-muted);">
+        Don't have an account? <a href="register.html" style="font-weight: 700;">Create account</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initLoginForm();
+
+      // Check query param for demo auto-fill
+      const urlParams = new URLSearchParams(window.location.search);
+      const demoRole = urlParams.get('demo');
+      if (demoRole) {
+        fillDemoLogin(demoRole);
+      }
+    });
+  </script>
+</body>
+</html>
